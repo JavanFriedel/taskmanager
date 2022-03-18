@@ -1,0 +1,19 @@
+{
+  "name": "taskmanager",
+  "version": "1.0.0",
+  "description": "The classic TODO list application with project seperations and due dates,",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JavanFriedel/taskmanager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JavanFriedel/taskmanager/issues"
+  },
+  "homepage": "https://github.com/JavanFriedel/taskmanager#readme"
+}
