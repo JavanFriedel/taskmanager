@@ -1,0 +1,138 @@
+:root {
+  --bg-color: rgb(90, 90, 90);
+  --body-color: blue;
+  --color-main: blue;
+  --color-accent: green;
+  --color-light: white;
+  --text-color: white;
+  --test: 1px dashed red;
+
+  /* Background Color Options */
+  --bg-color-top: #1f93ff;
+  --bg-color-right: #d738ff;
+  --bg-color-bottom: #2433ff;
+  --bg-color-left: #ff25ab;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+              /* Starting from top left corner... 1. 25% to the right, 75% down etc.. */
+  background: radial-gradient(ellipse at 25% 75%, var(--bg-color-left), transparent),
+              radial-gradient(ellipse at 75% 25%, var(--bg-color-right), transparent),
+              radial-gradient(ellipse at 25% 25%, var(--bg-color-top), transparent),
+              radial-gradient(ellipse at 75% 75%, var(--bg-color-bottom), transparent),
+              black;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: var(--bg-color);
+  min-height: 800px;
+  min-width: 1200px;
+  box-shadow: 0 0 25px 1px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-areas: 
+  "nav main main main main";
+}
+
+nav {
+  grid-area: nav;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  grid-area: main;
+
+  display: grid;
+  grid-template-areas: 
+  "header"
+  "content";
+  grid-template-rows: 50px auto;
+}
+
+.nav-title {
+  font-size: 22px;
+  text-align: center;
+  padding: 5px;
+  position: relative;
+  color: var(--text-color);
+}
+
+.nav-title::after {
+  content: '';
+  width: 80%;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.50), transparent);
+  position: absolute;
+  left: 10%;
+  bottom: -2px;
+  margin-bottom: 5px;
+}
+
+.nav-project {
+  height: 30px;
+  margin: 5px;
+  align-items: center;
+  background-color: var(--bg-color);
+  filter: brightness(1.1);
+  color: var(--text-color);
+  padding: 5px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-project > .title {
+  font-size: 14px;
+}
+
+.nav-settings {
+  margin-top: auto;
+  text-align: center;
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.header {
+  border-bottom: 1px solid var(--color-light);
+  padding: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header > .title {
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.sortBtn {
+  border: 1px solid white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+}
+
+.project-content {
+  padding: 20px;
+}
