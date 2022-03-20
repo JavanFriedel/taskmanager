@@ -2,7 +2,7 @@
   --bg-color: rgb(90, 90, 90);
   --body-color: blue;
   --color-main: blue;
-  --color-accent: green;
+  --color-accent: rgba(0, 117, 251, 0.281);
   --color-light: white;
   --text-color: white;
   --test: 1px dashed red;
@@ -42,6 +42,8 @@ body {
   box-shadow: 0 0 25px 1px rgba(0, 0, 0, 0.75);
   border-radius: 5px;
 
+  position: relative;
+
   display: grid;
   grid-template-columns: 20% auto;
   grid-template-areas: 
@@ -54,6 +56,7 @@ nav {
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 main {
@@ -63,7 +66,7 @@ main {
   grid-template-areas: 
   "header"
   "content";
-  grid-template-rows: 50px auto;
+  grid-template-rows: 50px minmax(100px, max-content) auto ;
 }
 
 .nav-title {
@@ -87,12 +90,14 @@ main {
 
 .nav-project {
   height: 30px;
+  width: 95%;
   margin: 5px;
   align-items: center;
   background-color: var(--bg-color);
   filter: brightness(1.1);
   color: var(--text-color);
   padding: 5px;
+  cursor: pointer;
 
   display: flex;
   justify-content: space-between;
@@ -135,4 +140,33 @@ main {
 
 .project-content {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.addProject {
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+  width: 50%;
+}
+
+.taskContainer {
+  background-color: var(--color-accent);
+  padding: 10px;
+}
+
+.addTask {
+  flex: 1;
+}
+
+form {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+
+  background-color: red;
 }
