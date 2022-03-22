@@ -2,7 +2,7 @@
   --bg-color: rgb(90, 90, 90);
   --body-color: blue;
   --color-main: blue;
-  --color-accent: rgba(0, 117, 251, 0.281);
+  --color-accent: rgb(0, 119, 255);
   --color-light: white;
   --text-color: white;
   --test: 1px dashed red;
@@ -52,9 +52,16 @@ body {
 
 
 nav {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.projectList {
   grid-area: nav;
   border-right: 1px solid rgba(255, 255, 255, 0.5);
-  height: 100%;
+  flex: 1;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,7 +73,9 @@ main {
   grid-template-areas: 
   "header"
   "content";
-  grid-template-rows: 50px minmax(100px, max-content) auto ;
+  grid-template-rows: 50px;
+  grid-auto-rows: minmax(50px, max-content);
+  gap: 20px;
 }
 
 .nav-title {
@@ -116,6 +125,10 @@ main {
   padding: 10px;
 }
 
+.projectListContainer {
+  width: 100%;
+}
+
 .header {
   border-bottom: 1px solid var(--color-light);
   padding: 10px;
@@ -131,16 +144,9 @@ main {
   font-weight: bold;
 }
 
-.sortBtn {
-  border: 1px solid white;
-  padding: 5px 15px;
-  border-radius: 5px;
-  color: white;
-}
-
 .project-content {
-  padding: 20px;
   display: flex;
+  padding: 0 20px;
   flex-direction: column;
   gap: 20px;
 }
@@ -150,6 +156,7 @@ main {
   color: white;
   border: 1px solid white;
   width: 50%;
+  cursor: pointer;
 }
 
 .taskContainer {
@@ -159,17 +166,72 @@ main {
 
 .addTask {
   flex: 1;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  cursor: pointer;
 }
 
-form {
+.addTask > p {
+  border: 1px solid white;
+  padding: 5px 20px;
+}
+
+.addTaskForm {
+  margin: 0 20px;
+  padding: 10px;
+  border: 1px solid white;
+
+  transition: all 1s ease-in-out;
+}
+
+.projects-form {
   position: absolute;
   z-index: 2;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
+  top: 30%;
+  left: 25%;
+  width: 50%;
 
-  background-color: red;
+  background-color: var(--bg-color);
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.projects-form > div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.projects-form > .projectColorSelect {
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.projects-form > .projectTitleDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 30px;
+  background-color: var(--color-accent);
+  border: 1px solid white;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .formBG {
@@ -191,4 +253,63 @@ form {
 
 .hide {
   display: none;
+}
+
+input[type='text'] {
+  width: 100%;
+  font-size: 18px;
+  padding: 5px;
+}
+
+#closeBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+
+  width: 20px;
+  height: 20px;
+  background-color: grey;
+  border-radius: 10px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textBox {
+  width: 100%;
+  height: 150px;
+  margin: 10px 0;
+  resize: none;
+}
+
+.taskInputForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.taskInputForm > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px;
+}
+.taskBtns {
+  margin-left: auto;
+}
+
+#taskInputCancel {
+  background-color: rgb(255, 47, 47);
+}
+
+#taskInputSubmit {
+  background-color: rgb(0, 172, 23);
+}
+
+.taskDesc {
+  background-color: rgba(255, 255, 255, 0.301);
+  margin: 5px;
+  padding: 5px;
 }

@@ -9,22 +9,70 @@
   <body>
     <div class="container">
       <nav>
-        <div class="nav-title">PROJECTS</div>
-        <div class="addProject">+ Project</div>
+        <div class="projectList">
+          <div class="nav-title">PROJECTS</div>
+          <div class="projectListContainer"></div>
+          <div class="addProject">+ Project</div>
+        </div>
         <div class="nav-settings">⚙ Settings</div>
       </nav>
       <main>
         <div class="header">
           <div class="title">Default</div>
-          <div class="sortBtn">Sort</div>
-          <div class="project-options">🟣 🗑️ ✏️</div>
+          <div class="project-options">✏️🗑️</div>
         </div>
-        <div class="project-content">
-          <div class="addTask">+ Add Task</div>
+        <div class="project-content"></div>
+        <div class="addTaskForm hide">
+          <form class="taskInputForm">
+            <input type="text" placeholder="Name" id="taskNameInput" />
+            <textarea
+              class="textBox"
+              placeholder="Description"
+              id="taskDescInput"
+            ></textarea>
+            <div>
+              <div>
+                <label for="taskDueInput">Due Date:</label>
+                <input type="datetime-local" id="taskDueInput" />
+                <select id="taskPriorityInput">
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <div class="taskBtns">
+                <button id="taskInputCancel" type="button">Cancel</button>
+                <button id="taskInputSubmit" type="button">Submit</button>
+              </div>
+            </div>
+            <div></div>
+          </form>
         </div>
+        <div class="addTask"><p>+ Add Task</p></div>
       </main>
-      <form class="hide">
-        <h1>Hello!</h1>
+      <form class="projects-form hide">
+        <div id="closeBtn">x</div>
+        <div class="projectTitleDiv">
+          <label for="projectTitle">Title:</label>
+          <input type="text" id="projectTitle" />
+        </div>
+        <div>
+          <label for="projectDueDate">Due Date:</label>
+          <input type="date" id="projectDueDate" />
+          <label for="projectDueDate">Time:</label>
+          <input type="time" id="projectDueTime" />
+          <label for="projectPriority">Priority</label>
+          <select name="projectPriority" id="projectPriority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="projectColorSelect">
+          <label for="projectColor">Color:</label>
+          <input type="color" id="projectColor" />
+        </div>
+        <button type="button">Add Project</button>
       </form>
       <div class="formBG hide"></div>
     </div>
