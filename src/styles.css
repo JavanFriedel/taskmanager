@@ -12,6 +12,8 @@
   --bg-color-right: #d738ff;
   --bg-color-bottom: #2433ff;
   --bg-color-left: #ff25ab;
+
+  --border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 * {
@@ -54,12 +56,12 @@ body {
 nav {
   display: flex;
   flex-direction: column;
+  border-right: var(--border);
 
 }
 
 .projectList {
   grid-area: nav;
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
   flex: 1;
 
   display: flex;
@@ -105,8 +107,8 @@ main {
   background-color: var(--bg-color);
   filter: brightness(1.1);
   color: var(--text-color);
-  padding: 5px;
   cursor: pointer;
+  border: var(--border);
 
   display: flex;
   justify-content: space-between;
@@ -114,6 +116,8 @@ main {
 
 .nav-project > .title {
   font-size: 14px;
+  padding: 5px;
+  flex: 1;
 }
 
 .nav-settings {
@@ -130,7 +134,7 @@ main {
 }
 
 .header {
-  border-bottom: 1px solid var(--color-light);
+  border-bottom: var(--border);
   padding: 10px;
 
   display: flex;
@@ -154,14 +158,13 @@ main {
 .addProject {
   text-align: center;
   color: white;
-  border: 1px solid white;
+  border: var(--border);
   width: 50%;
   cursor: pointer;
 }
 
 .taskContainer {
   background-color: var(--color-accent);
-  padding: 10px;
 }
 
 .addTask {
@@ -175,14 +178,14 @@ main {
 }
 
 .addTask > p {
-  border: 1px solid white;
+  border: var(--border);
   padding: 5px 20px;
 }
 
 .addTaskForm {
   margin: 0 20px;
   padding: 10px;
-  border: 1px solid white;
+  border: var(--border);
 
   transition: all 1s ease-in-out;
 }
@@ -226,7 +229,7 @@ main {
 button {
   padding: 10px 30px;
   background-color: var(--color-accent);
-  border: 1px solid white;
+  border: var(--border);
   border-radius: 3px;
   color: white;
   font-weight: bold;
@@ -310,6 +313,36 @@ input[type='text'] {
 
 .taskDesc {
   background-color: rgba(255, 255, 255, 0.301);
-  margin: 5px;
+  min-height: 75px;
+  padding: 10px 25px;
+  border-left: var(--border);
+  border-right: var(--border);
+  border-bottom: var(--border);
+}
+
+.taskTitle {
+  font-weight: bold;
+  flex: 1;
+  padding: 10px;
+}
+
+.taskHeader {
+  border: var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskDelete {
+  cursor: pointer;
+  border-left: var(--border);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.project-options {
   padding: 5px;
+  border-left: var(--border);
 }

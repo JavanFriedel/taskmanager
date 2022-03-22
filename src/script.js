@@ -17,16 +17,32 @@ function updateLocalStorage() {
   STORAGE.setItem('data', JSON.stringify(DATA));
 }
 
+function deleteTask(task) {
+  delete ACTIVEPROJECT.tasks[task.title];
+  updateLocalStorage();
+}
+
 // render DOM node for task
 function renderTaskNode(task) {
   const taskNode = createDiv('taskContainer');
 
+  const taskHeader = createDiv('taskHeader');
   const taskTitle = createDiv('taskTitle', task.title);
+  const taskDelete = createDiv('taskDelete', '❌');
+
+  taskDelete.addEventListener('click', () => {
+    deleteTask(task);
+    // eslint-disable-next-line no-use-before-define
+    renderTasks(ACTIVEPROJECT);
+  });
+
+  taskHeader.append(taskTitle, taskDelete);
+
   const taskDesc = createDiv(['taskDesc', 'hide'], task.notes);
 
-  taskNode.append(taskTitle, taskDesc);
+  taskNode.append(taskHeader, taskDesc);
 
-  taskNode.addEventListener('click', () => {
+  taskTitle.addEventListener('click', () => {
     taskDesc.classList.toggle('hide');
   });
 
@@ -50,6 +66,17 @@ function renderProjectView(project) {
   ACTIVEPROJECT = project;
   renderTasks(project);
 }
+// Render Project Data to DOM
+function renderProjects() {
+  const keys = Object.keys(DATA);
+
+  deleteNodeChildren(PROJECTLIST);
+
+  keys.forEach((project) => {
+    // eslint-disable-next-line no-use-before-define
+    addProjectTab(DATA[project]);
+  });
+}
 
 function changeProject(project) {
   ACTIVEPROJECT = DATA[project];
@@ -57,7 +84,15 @@ function changeProject(project) {
   document.querySelector('.header > .title').innerText = ACTIVEPROJECT.title;
 
   deleteNodeChildren(TASKVIEW);
+  renderProjects();
   renderProjectView(DATA[project]);
+}
+
+function deleteProject(project) {
+  delete DATA[project];
+  updateLocalStorage();
+  ACTIVEPROJECT = DATA[Object.keys(DATA)[0]];
+  changeProject(ACTIVEPROJECT.title);
 }
 
 // --- Add Project to Nav ---
@@ -66,21 +101,21 @@ function addProjectTab(obj) {
   projectTab.setAttribute('data-project', obj.title);
 
   const projectTitle = createDiv('title', obj.title);
-  const projectOptions = createDiv('project-options', 'x');
+  const projectDelete = createDiv('project-options', '❌');
 
-  projectTab.addEventListener('click', (event) => {
-    let dataAtrribute;
+  projectDelete.addEventListener('click', (event) => {
+    const dataAtrribute = event.target.parentNode.getAttribute('data-project');
 
-    if (event.target === projectTitle) {
-      dataAtrribute = event.target.parentNode.getAttribute('data-project');
-    } else {
-      dataAtrribute = event.target.getAttribute('data-project');
-    }
+    deleteProject(dataAtrribute);
+  });
+
+  projectTitle.addEventListener('click', (event) => {
+    const dataAtrribute = event.target.parentNode.getAttribute('data-project');
 
     changeProject(dataAtrribute);
   });
 
-  projectTab.append(projectTitle, projectOptions);
+  projectTab.append(projectTitle, projectDelete);
   PROJECTLIST.append(projectTab);
 }
 
@@ -112,17 +147,6 @@ function appendProject(obj) {
 function newProject(title, dueDate, time, priority, color, tasks) {
   const project = createProject(title, dueDate, time, priority, color, tasks);
   appendProject(project);
-}
-
-// Render Project Data to DOM
-function renderProjects() {
-  const keys = Object.keys(DATA);
-
-  deleteNodeChildren(PROJECTLIST);
-
-  keys.forEach((project) => {
-    addProjectTab(DATA[project]);
-  });
 }
 
 // --- TASK MANAGEMENT ---
@@ -201,6 +225,11 @@ newTaskSubmit.addEventListener('click', () => {
   addNewTask();
 });
 
+const newTaskCancel = document.querySelector('#taskInputCancel');
+newTaskCancel.addEventListener('click', () => {
+  document.querySelector('.addTaskForm').classList.toggle('hide');
+});
+
 const newTaskBtn = document.querySelector('.addTask');
 newTaskBtn.addEventListener('click', () => {
   toggleTaskForm();
@@ -226,7 +255,6 @@ newProjectSubmit.addEventListener('click', () => {
 if (STORAGE.getItem('data')) {
   const storageData = STORAGE.getItem('data');
   DATA = JSON.parse(storageData);
-  console.table(DATA);
 } else {
   DATA = {};
   const testTask = createTaskObj('Task1', 'This is test', 'X', 'X');
@@ -236,12 +264,11 @@ if (STORAGE.getItem('data')) {
 renderProjects();
 
 // set initial active Project, should be parsed from storage later
-ACTIVEPROJECT = DATA.Default;
+ACTIVEPROJECT = DATA[Object.keys(DATA)[0]];
+changeProject(ACTIVEPROJECT.title);
 
 renderTasks(ACTIVEPROJECT);
 
 // TODO
-// - Add Dropdown task funcitonality
-// - Add Delete Todo Functionality
-// - Add Delete Project Functionality
-// - Add Deadline Functionality
+// - Add Deadline Display Functionality
+// - Add Color Functionality
