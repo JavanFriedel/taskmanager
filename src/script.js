@@ -272,3 +272,9 @@ renderTasks(ACTIVEPROJECT);
 // TODO
 // - Add Deadline Display Functionality
 // - Add Color Functionality
+// - Add Priority Indicator
+// - Add Edit Functionality to Both Tasks and Projects
+// - Redo color scheme
+// - Add Mobile Capabilties
+// - Redo Code to be OOP with namespacing and seperation of concerns
+// - Add Undo Button and status update text (Like google docs)
